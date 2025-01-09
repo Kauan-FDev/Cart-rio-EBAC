@@ -14,6 +14,7 @@ int registro()//Função responsável por cadastrar os usuários no sistema.
 	char nome [40];
 	char sobrenome[40];
 	char cargo[40];
+	char opcao[40];
 	//Final da criação de Variáveis/String
 	
 	printf("Digite o CPF a ser cadastrado: "); //Coletando informação do usuário.
@@ -52,14 +53,29 @@ int registro()//Função responsável por cadastrar os usuários no sistema.
 	fprintf(file, ",");
 	fclose(file);
 	
-	printf("Digite o Cargo a ser cadastrado: ");
+	printf("Digite o Cargo a ser cadastrado:");
 	scanf("%s",cargo);
 	
 	file = fopen(arquivo, "a");
 	fprintf(file,cargo);
 	fclose(file);
 	
+	printf("\n");
+	
 	system("pause");
+	
+	printf("\nDeseja cadastrar outro usuário?:\n\n[sim]\t[nao]:");
+    scanf("%s", opcao);
+
+    if (strcmp(opcao, "nao") == 0)
+    {
+        return 0; // Retorna ao menu
+    }
+	if(strcmp(opcao, "sim") == 0)	
+	{
+		system("cls");
+		registro();
+	}
 	
 }
 
@@ -70,6 +86,7 @@ int consulta()
 	//Inicio da criação de Variáveis/String.
 	char cpf[40];
 	char conteudo[200];
+	char opcao[40];
 	//Final da criação de Variáveis/String
 	
 	printf("Digite o CPF a ser consultado: ");//Coletando informação do usuário.
@@ -80,7 +97,7 @@ int consulta()
 	
 	if(file == NULL)
 	{
-		printf("Não foi possível abrir o arquivo, este CPF não foi localizado.\n");
+		printf("\nNão foi possível abrir o arquivo, este CPF não foi localizado.\n\n");
 	}
 	
 	while(fgets(conteudo, 200, file) != NULL)
@@ -91,6 +108,19 @@ int consulta()
 	}
 	system("pause");
 	fclose(file);
+	
+	printf("\nDeseja consultar outro usuário?:\n\n[sim]\t[nao]:");
+    scanf("%s", opcao);
+	
+	if (strcmp(opcao, "nao") == 0)
+    {
+        return 0; // Retorna ao menu
+    }
+	if(strcmp(opcao, "sim") == 0)	
+	{
+		system("cls");
+		consulta();
+	}
 }
 
 int deletar()
@@ -99,26 +129,40 @@ int deletar()
 	
 	//Inicio da criação de Variáveis/String
 	char cpf[40];
+	char opcao[40];
 	//Final da criação de Variáveis/String
 	
 	printf("Digite o CPF a ser deletado: ");//Coletando informação do usuário.
 	scanf("%s",cpf);
-	
+	printf("\n");
 	
 	FILE *file;
 	file = fopen(cpf,"r");
 	
 	if(file == NULL)
 	{
-		printf("CPF do usuário não encontrado no sistema!\n");
+		printf("CPF do usuário não encontrado no sistema!\n\n");
 		system("pause");
 	}
 	else
 	{
 		fclose(file);//Fechando o arquivo, pois ele existe
 		remove(cpf);//Deletando o arquivo do CPF
-		printf("\nO CPF solicitado foi deletado!\n\n");
+		printf("\nO CPF solicitado foi deletado!\n");
 		system("pause");
+	}
+	
+	printf("\nDeseja deletar outro usuário?:\n\n[sim]\t[nao]:");
+    scanf("%s", opcao);
+
+    if (strcmp(opcao, "nao") == 0)
+    {
+        return 0; // Retorna ao menu
+    }
+	if(strcmp(opcao, "sim") == 0)	
+	{
+		system("cls");//limpeza da tela
+		deletar();//volta ao inicio da função
 	}
 }
 
@@ -162,7 +206,7 @@ int main()
 				deletar(); //Chamada de funções
 			break;
 			
-			case 4:
+			case 4://Encerramento do programa 
 				printf("Obrigado por utilizar o sistema!");
 				return 0;
 				break;
