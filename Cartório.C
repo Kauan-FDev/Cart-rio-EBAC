@@ -171,52 +171,73 @@ int main()
 
 	int opcao=0;//definindo as variaveis
 	int laco=1;
-
-	for(laco=1;laco=1;)//Definindo laço de repetição
+	char senhadigitada[20]="a";
+	
+	printf("### Cartório da EBAC ###\n\n");
+	printf("Login de Administrador\n\nDigite a sua senha ou digite encerrar para fechar o sistema:");
+	scanf("%s", senhadigitada);
+	
+	if(strcmp(senhadigitada,"encerrar") == 0)
 	{
-	
-		system("cls");//Responsável por limpar a tela
-	
-		setlocale(LC_ALL, "Portuguese");//definindo a linguagem
-	
-		printf("### Cartório da EBAC ###\n\n");//Inicio do menu
-		printf("Escolha a opção desejada do menu:\n\n");
-		printf("\t1 - Registrar Nomes\n");
-		printf("\t2 - Consultar Nomes\n");
-		printf("\t3 - Deletar Nomes\n");
-		printf("\t4 - Sair do Sistema\n\n");
-		printf("Opção: ");//Final do Menu
+		printf("Obrigado por utilizar o sistema!");
+		return 0;
+	}
+		
+	if(strcmp(senhadigitada, "adminzk") == 0)
+	{
 
-		scanf("%d", &opcao);//armazenando a escolha do usuario
-	
-		system("cls");
-		
-		
-		switch(opcao)//inicio da seleção do menu
+		for(laco=1;laco=1;)//Definindo laço de repetição
 		{
-			case 1:
-				registro(); //Chamada de funções
-			break;
-			
-			case 2:
-				consulta(); //Chamada de funções
-			break;
-			
-			case 3:
-				deletar(); //Chamada de funções
-			break;
-			
-			case 4://Encerramento do programa 
-				printf("Obrigado por utilizar o sistema!");
-				return 0;
+		
+			system("cls");//Responsável por limpar a tela
+	
+			setlocale(LC_ALL, "Portuguese");//definindo a linguagem
+	
+			printf("### Cartório da EBAC ###\n\n");//Inicio do menu
+			printf("Escolha a opção desejada do menu:\n\n");
+			printf("\t1 - Registrar Nomes\n");
+			printf("\t2 - Consultar Nomes\n");
+			printf("\t3 - Deletar Nomes\n");
+			printf("\t4 - Sair do Sistema\n\n");
+			printf("Opção: ");//Final do Menu
+
+			scanf("%d", &opcao);//armazenando a escolha do usuario
+	
+			system("cls");
+		
+		
+			switch(opcao)//inicio da seleção do menu
+			{
+				case 1:
+					registro(); //Chamada de funções
 				break;
 			
-			default:
-				printf("Esta opção não está disponível! Digite uma opção válida!\n\n");
-			system("pause");
-			break;
+				case 2:
+					consulta(); //Chamada de funções
+				break;
 			
-		}//final da seleção
+				case 3:
+					deletar(); //Chamada de funções
+				break;
+			
+				case 4://Encerramento do programa 
+					printf("Obrigado por utilizar o sistema!");
+					return 0;
+					break;
+			
+				default:
+				printf("Esta opção não está disponível! Digite uma opção válida!\n\n");
+				system("pause");
+				break;
+			
+			}//final da seleção
 	
-	}
+		}
+	}	
+	else
+		printf("\nSenha Incorreta\n");
+		system("pause");
+		system("cls");
+		main();
+		
 }
